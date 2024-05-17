@@ -139,6 +139,51 @@ public class LL1 {
         temp.next = temp2;
         temp1.next = null;
     }
+    public int itrsearch(int key) {
+        Node temp = head;
+        int i=0;
+
+        while(temp != null){
+            if(temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+        return -1;
+    }
+    public int helper(Node head, int key){
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == key) {
+            return 0;
+        }
+
+        int idx = helper(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+        return idx + 1;
+    }
+    public int recSearch(int key) {
+        return helper(head,key);
+    }
+
+    public void reverse(){
+        Node curr = tail = head;
+        Node prev = null;
+        Node next ;
+        while (curr!=null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
 
 
     public static void main(String[] args) {
@@ -164,7 +209,10 @@ public class LL1 {
         ll.Add(2,1);
         ll.Add(3,2);
         ll.printLL();
-//        System.out.println(ll.itrsearch(3));
-
+        System.out.println(ll.itrsearch(3));
+        System.out.println(ll.recSearch(4));
+        System.out.println(ll.recSearch(23));
+        ll.reverse();
+        ll.printLL();
     }
 }
