@@ -134,10 +134,7 @@ public class LL1 {
             temp = temp.next;
             i++;
         }
-        Node temp1 = temp.next;
-        Node temp2 = temp1.next;
-        temp.next = temp2;
-        temp1.next = null;
+       temp.next = temp.next.next;
     }
     public int itrsearch(int key) {
         Node temp = head;
@@ -184,35 +181,94 @@ public class LL1 {
         head = prev;
     }
 
+    //Remove nth node from end
+    public void removenthEnd(int n){
+        remove(size-n-1-1);
+    }
 
+
+    //slow fast approach
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast!=null && fast.next!=null ) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public boolean checkPalindrome() {
+        if(head == null || head.next == null){
+            return true;
+        }
+
+        //step1 - find mid
+        Node midNode = findMid(head);
+        //step2- reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;//right half head
+        Node left = head;
+        //step3- match left and right half
+        while(right != null) {
+            if(left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
+//        LL1 ll = new LL1();
+//        ll.addFirst(1);
+//        ll.addFirst(2);
+//        ll.addLast(3);
+//        ll.printLL();
+//        ll.addLast(4);
+//        ll.printLL();
+//        ll.Add(100,2);
+//        ll.printLL();
+//        System.out.println(ll.size);
+//        ll.removeFirst();
+//        ll.printLL();
+//        ll.removeLast();
+//        ll.printLL();
+//        ll.addLast(4);
+//        ll.addLast(5);
+//        ll.remove(2);
+//        ll.printLL();
+//        ll.remove(1);
+//        ll.Add(2,1);
+//        ll.Add(3,2);
+//        ll.printLL();
+//        System.out.println(ll.itrsearch(3));
+//        System.out.println(ll.recSearch(4));
+//        System.out.println(ll.recSearch(23));
+//        ll.reverse();
+//        ll.printLL();
+//        ll.removenthEnd(3);
+//        ll.printLL();
+
+
         LL1 ll = new LL1();
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addLast(3);
-        ll.printLL();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(2);
+        ll.addLast(1);
         ll.addLast(4);
+
         ll.printLL();
-        ll.Add(100,2);
-        ll.printLL();
-        System.out.println(ll.size);
-        ll.removeFirst();
-        ll.printLL();
-        ll.removeLast();
-        ll.printLL();
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.remove(2);
-        ll.printLL();
-        ll.remove(1);
-        ll.Add(2,1);
-        ll.Add(3,2);
-        ll.printLL();
-        System.out.println(ll.itrsearch(3));
-        System.out.println(ll.recSearch(4));
-        System.out.println(ll.recSearch(23));
-        ll.reverse();
-        ll.printLL();
+        System.out.println(ll.checkPalindrome());
+
     }
 }
