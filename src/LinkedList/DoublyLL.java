@@ -129,17 +129,16 @@ public class DoublyLL {
         }
         Node current = head;
         Node temp = null;
-        Node last = null;
+
         while(current!=null){
             // Swap current.prev & current.next
             temp = current.prev;
             current.prev = current.next;
             current.next = temp;
 
-            last = current;
             current = current.prev;
         }
-        head = temp.prev;
+        head = temp.prev; //to update head
     }
 
     //Additional functions to try
