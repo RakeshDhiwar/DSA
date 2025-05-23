@@ -1,7 +1,6 @@
 package LinkedList;
-import java.util.LinkedList;
 
-public class LL1 {
+public class SinglyLL {
 
     public static class Node {
         int data;
@@ -13,9 +12,10 @@ public class LL1 {
         }
 
     }
-
-    public static Node head;
-    public static Node tail;
+    //Head and tail should be unique to each LinkedList instance.
+    //Changed their declaration to non-static to ensure correct object-level behavior.
+    public Node head;
+    public Node tail;
 
     public static int size;
     //Methods
@@ -442,7 +442,7 @@ public class LL1 {
 //    ll.head = ll.mergeSort(ll.head);
 //    ll.printLL();
 
-        LL1 ll = new LL1();
+        SinglyLL ll = new SinglyLL();
         ll.addLast(1);
         ll.addLast(2);
         ll.addLast(3);
@@ -452,5 +452,6 @@ public class LL1 {
         ll.printLL();
         ll.zigzag();
         ll.printLL();
+
     }
 }
