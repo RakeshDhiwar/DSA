@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.HashSet;
+
 public class PracticeQuestions {
     //Print list
     public static void printList(SinglyLL.Node head) {
@@ -137,8 +139,29 @@ public class PracticeQuestions {
         Nxt.next = null;
     }
 
+    //Remove Duplicate from Unsorted LinkedList
+    public static SinglyLL.Node RemoveDuplicate(SinglyLL.Node head) {
+        HashSet<Integer> seen = new HashSet<>();
+        SinglyLL.Node dummy = new SinglyLL.Node(-1);
+        dummy.next = head;
 
+        SinglyLL.Node prev = dummy;
+        SinglyLL.Node curr = head;
 
+        while (curr != null) {
+            if (seen.contains(curr.data)) {
+                // Duplicate found, skip it
+                prev.next = curr.next;
+            } else {
+                // First time seeing this value
+                seen.add(curr.data);
+                prev = curr;
+            }
+            curr = curr.next;
+        }
+
+        return dummy.next;
+    }
 
 
     public static void main(String[] args) {
@@ -169,13 +192,15 @@ public class PracticeQuestions {
 //        }
 
         SinglyLL list3 = new SinglyLL();
-        list3.addLast(8);
+        list3.addLast(10);
         list3.addLast(12);
         list3.addLast(10);
         list3.addLast(5);
         list3.addLast(4);
-        list3.addLast(1);
         list3.addLast(6);
+        list3.addLast(6);
+        list3.addLast(12);
+        list3.addLast(12);
 //      Question 2
 //      list3.printLL();
 //      PracticeQuestions.Delete_NM(list3.head,2,2);
@@ -192,9 +217,14 @@ public class PracticeQuestions {
 //        list3.printLL();
 //
 //      Question 5
-        SinglyLL.Node deleteNode = list3.head.next.next.next;
+//        SinglyLL.Node deleteNode = list3.head.next.next.next;
+//        list3.printLL();
+//        PracticeQuestions.delete_without_head(deleteNode);
+//        list3.printLL();
+
+//      Question 6
         list3.printLL();
-        PracticeQuestions.delete_without_head(deleteNode);
+        list3.head = PracticeQuestions.RemoveDuplicate(list3.head);
         list3.printLL();
     }
 }
