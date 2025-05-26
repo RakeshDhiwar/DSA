@@ -125,6 +125,18 @@ public class PracticeQuestions {
         return head;
     }
 
+    //Delete a node without head pointer;
+    public static void delete_without_head(SinglyLL.Node deleteNode){
+        if (deleteNode == null || deleteNode.next == null){
+            System.out.println("Cant do! Its last node");
+        }
+
+        SinglyLL.Node Nxt = deleteNode.next; //Node next to deleteNode
+        deleteNode.data = Nxt.data;          //Copy next node data to deleteNode
+        deleteNode.next = Nxt.next;          //delete the next node;
+        Nxt.next = null;
+    }
+
 
 
 
@@ -178,6 +190,11 @@ public class PracticeQuestions {
 //        list3.printLL();
 //        list3.head = PracticeQuestions.SegregateOddEven(list3.head);
 //        list3.printLL();
-
+//
+//      Question 5
+        SinglyLL.Node deleteNode = list3.head.next.next.next;
+        list3.printLL();
+        PracticeQuestions.delete_without_head(deleteNode);
+        list3.printLL();
     }
 }
