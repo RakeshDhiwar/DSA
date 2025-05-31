@@ -248,7 +248,22 @@ public class PracticeQuestions {
         return head;
     }
 
+    //Multiply two numbers represented by Linked Lists
+    public static int Multiply(SinglyLL.Node head1, SinglyLL.Node head2) {
+        int num1 = 0, num2 = 0;
 
+        while (head1 != null) {
+            num1 = num1 * 10 + head1.data;
+            head1 = head1.next;
+        }
+
+        while (head2 != null) {
+            num2 = num2 * 10 + head2.data;
+            head2 = head2.next;
+        }
+
+        return num1 * num2;
+    }
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
@@ -277,15 +292,15 @@ public class PracticeQuestions {
 //        }
 
         SinglyLL list3 = new SinglyLL();
-        list3.addLast(2);
-        list3.addLast(2);
-        list3.addLast(1);
-        list3.addLast(2);
-        list3.addLast(0);
-        list3.addLast(0);
-        list3.addLast(0);
         list3.addLast(1);
         list3.addLast(0);
+        list3.addLast(0);
+//        list3.addLast(2);
+        SinglyLL list4 = new SinglyLL();
+        list4.addLast(1);
+        list4.addLast(0);
+//        list4.addLast(1);
+//        list4.addLast(2);
 //      Question 2
 //      list3.printLL();
 //      PracticeQuestions.Delete_NM(list3.head,2,2);
@@ -316,8 +331,11 @@ public class PracticeQuestions {
 //        list3.printLL();
 //        PracticeQuestions.Sort_012(list3.head);
 //        list3.printLL();
-        list3.printLL();
-        list3.head = PracticeQuestions.Sorting_012(list3.head);
-        list3.printLL();
+//        list3.printLL();
+//        list3.head = PracticeQuestions.Sorting_012(list3.head);
+//        list3.printLL();
+
+//      Question 8
+        System.out.println(PracticeQuestions.Multiply(list3.head,list4.head));
     }
 }
