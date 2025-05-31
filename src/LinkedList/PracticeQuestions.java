@@ -163,6 +163,91 @@ public class PracticeQuestions {
         return dummy.next;
     }
 
+    //Sorting 0s,1s, & 2s
+    public static void Sort_012(SinglyLL.Node head){
+        int Zeros = 0, Ones = 0, Twos = 0;
+        SinglyLL.Node curr = head;
+
+        //Track No of Zeroes Ones and Twos
+        while(curr != null){
+            if (curr.data == 0){
+                Zeros++;
+            } else if (curr.data == 1) {
+                Ones++;
+            } else {
+                Twos++;
+            }
+            curr=curr.next;
+        }
+
+        curr = head;
+        //Change Data to 0,1,2
+        while(curr != null){
+            if (Zeros > 0){
+                curr.data = 0;
+                Zeros--;
+            } else if (Ones > 0) {
+                curr.data = 1;
+                Ones--;
+            } else {
+                curr.data = 2;
+                Twos--;
+            }
+            curr=curr.next;
+        }
+    }
+
+    public static SinglyLL.Node Sorting_012(SinglyLL.Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        SinglyLL.Node head0 = new SinglyLL.Node(-1);
+        SinglyLL.Node head1 = new SinglyLL.Node(-1);
+        SinglyLL.Node head2 = new SinglyLL.Node(-1);
+
+        SinglyLL.Node temp0 = head0;
+        SinglyLL.Node temp1 = head1;
+        SinglyLL.Node temp2 = head2;
+
+        SinglyLL.Node temp = head;
+
+        while(temp != null){
+            if(temp.data == 0){
+                temp0.next = temp;
+                temp0 = temp;
+            } else if(temp.data == 1) {
+                temp1.next = temp;
+                temp1 = temp;
+            } else {
+                temp2.next = temp;
+                temp2 = temp;
+            }
+            temp = temp.next;
+        }
+        // End all sublists
+        temp2.next = null;
+
+        // Connect the three lists safely
+        if (head1.next != null) {
+            temp0.next = head1.next;
+            temp1.next = head2.next;
+        } else {
+            temp0.next = head2.next;
+        }
+
+        // Determine new head
+        if (head0.next != null) {
+            head = head0.next;
+        } else if (head1.next != null) {
+            head = head1.next;
+        } else {
+            head = head2.next;
+        }
+
+        return head;
+    }
+
 
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
@@ -192,15 +277,15 @@ public class PracticeQuestions {
 //        }
 
         SinglyLL list3 = new SinglyLL();
-        list3.addLast(10);
-        list3.addLast(12);
-        list3.addLast(10);
-        list3.addLast(5);
-        list3.addLast(4);
-        list3.addLast(6);
-        list3.addLast(6);
-        list3.addLast(12);
-        list3.addLast(12);
+        list3.addLast(2);
+        list3.addLast(2);
+        list3.addLast(1);
+        list3.addLast(2);
+        list3.addLast(0);
+        list3.addLast(0);
+        list3.addLast(0);
+        list3.addLast(1);
+        list3.addLast(0);
 //      Question 2
 //      list3.printLL();
 //      PracticeQuestions.Delete_NM(list3.head,2,2);
@@ -223,8 +308,16 @@ public class PracticeQuestions {
 //        list3.printLL();
 
 //      Question 6
+//        list3.printLL();
+//        list3.head = PracticeQuestions.RemoveDuplicate(list3.head);
+//        list3.printLL();
+
+//      Question 7
+//        list3.printLL();
+//        PracticeQuestions.Sort_012(list3.head);
+//        list3.printLL();
         list3.printLL();
-        list3.head = PracticeQuestions.RemoveDuplicate(list3.head);
+        list3.head = PracticeQuestions.Sorting_012(list3.head);
         list3.printLL();
     }
 }
