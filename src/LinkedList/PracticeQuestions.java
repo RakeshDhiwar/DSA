@@ -290,6 +290,47 @@ public class PracticeQuestions {
         curr.next = curr.next.next;
         return head;
     }
+
+    //Reorder List -- L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+    public void reorderList(SinglyLL.Node head) {
+        if (head == null) return;
+
+        // FIND MID
+        SinglyLL.Node slow = head;
+        SinglyLL.Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // REVERSE SECOND HALF
+        SinglyLL.Node prev = null;
+        SinglyLL.Node curr = slow.next;  // Start reversing after mid
+        slow.next = null;                // Cut first half from second
+
+        while (curr != null) {
+            SinglyLL.Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // REARRANGE
+        SinglyLL.Node Left_head = head;
+        SinglyLL.Node Right_head = prev;
+
+        while (Right_head != null && Left_head != null) {
+            SinglyLL.Node temp1 = Left_head.next;
+            SinglyLL.Node temp2 = Right_head.next;
+
+            Left_head.next = Right_head;
+            Right_head.next = temp1;
+
+            Left_head = temp1;
+            Right_head = temp2;
+        }
+    }
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
