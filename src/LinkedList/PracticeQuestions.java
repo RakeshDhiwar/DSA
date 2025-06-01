@@ -264,6 +264,32 @@ public class PracticeQuestions {
 
         return num1 * num2;
     }
+
+    //Remove-nth-node-from-end-of-list
+    public SinglyLL.Node removeNthFromEnd(SinglyLL.Node head, int n) {
+        if(head == null || head.next == null && n>0){
+            head = null;
+            return head;
+        }
+        SinglyLL.Node curr = head;
+        int size = 0;
+        while(curr!=null){
+            size++;
+            curr = curr.next;
+        }
+        int m = size-n-1;
+
+        if(size == n){ // here m = -1, means need to delete head node
+            return head.next;
+        }
+        curr = head;
+        while(m>0){
+            curr = curr.next;
+            m--;
+        }
+        curr.next = curr.next.next;
+        return head;
+    }
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
