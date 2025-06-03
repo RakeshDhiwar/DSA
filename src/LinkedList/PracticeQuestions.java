@@ -3,6 +3,17 @@ package LinkedList;
 import java.util.HashSet;
 
 public class PracticeQuestions {
+
+    public static class MultilevelNode {
+        int data;
+        MultilevelNode next, child;
+
+        MultilevelNode(int x) {
+            data = x;
+            next = null;
+            child = null;
+        }
+    }
     //Print list
     public static void printList(SinglyLL.Node head) {
         SinglyLL.Node temp = head;
@@ -12,6 +23,22 @@ public class PracticeQuestions {
             temp = temp.next;
         }
         System.out.println(); // for newline after printing list
+    }
+
+    public static void printMList(MultilevelNode head) {
+        MultilevelNode temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+
+            // If child exists, recursively print it in parentheses
+            if (temp.child != null) {
+                System.out.print("[ ");
+                printMList(temp.child);
+                System.out.print("] ");
+            }
+
+            temp = temp.next;
+        }
     }
 
     //Detect a Linked List
@@ -331,6 +358,38 @@ public class PracticeQuestions {
         }
     }
 
+    //Flatten Multilevel Linked List
+    public static void flattenLL(MultilevelNode head) {
+        if (head == null) return;
+
+        MultilevelNode curr = head;
+        MultilevelNode tail = head;
+
+        // Step 1: Find the initial tail
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+
+        // Step 2: Traverse from head to tail
+        while (curr != null) {
+            if (curr.child != null) {
+                // Append the child list to the current tail
+                tail.next = curr.child;
+
+                // Find the new tail
+                MultilevelNode temp = curr.child;
+                while (temp.next != null) {
+                    temp = temp.next;
+                }
+                tail = temp;
+
+                // Nullify the child pointer
+                curr.child = null;
+            }
+            curr = curr.next;
+        }
+    }
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
@@ -403,6 +462,20 @@ public class PracticeQuestions {
 //        list3.printLL();
 
 //      Question 8
-        System.out.println(PracticeQuestions.Multiply(list3.head,list4.head));
+//        System.out.println(PracticeQuestions.Multiply(list3.head,list4.head));
+
+//      Question 9
+        MultilevelNode head = new MultilevelNode(1);
+        head.next = new MultilevelNode(2);
+        head.next.next = new MultilevelNode(3);
+        head.child = new MultilevelNode(4);
+        head.child.next = new MultilevelNode(5);
+        head.next.next.child = new MultilevelNode(6);
+        head.child.child = new MultilevelNode(7);
+
+        printMList(head);
+        PracticeQuestions.flattenLL(head);
+        printMList(head);
+
     }
 }
