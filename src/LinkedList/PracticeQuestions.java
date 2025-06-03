@@ -113,8 +113,11 @@ public class PracticeQuestions {
         SinglyLL.Node curr = head;
         SinglyLL.Node prev = null;
 
+        SinglyLL.Node firstMovedOdd = null; // <-- Track start of odd list (for all-odd case)
+
         // Move initial odd nodes to end
         while (curr != null && curr != end && curr.data % 2 != 0) {
+            if (firstMovedOdd == null) firstMovedOdd = curr; // mark first odd
             new_end.next = curr;
             curr = curr.next;
             new_end = new_end.next;
@@ -122,8 +125,13 @@ public class PracticeQuestions {
             head = curr; // move head to next valid even node (or null)
         }
 
-        // If all were odd, head will be null
-        if (curr == null) return head;
+        // If all nodes were odd
+        if (curr == end){
+            new_end.next = end;
+            new_end = new_end.next;
+            new_end.next = null;
+            return firstMovedOdd;
+        }
 
         // Now head is pointing to the first even node (if any)
         head = curr;
@@ -449,9 +457,9 @@ public class PracticeQuestions {
 
         SinglyLL list3 = new SinglyLL();
         list3.addLast(1);
-        list3.addLast(0);
-        list3.addLast(0);
-//        list3.addLast(2);
+        list3.addLast(5);
+        list3.addLast(7);
+        list3.addLast(9);
         SinglyLL list4 = new SinglyLL();
         list4.addLast(1);
         list4.addLast(0);
@@ -468,9 +476,9 @@ public class PracticeQuestions {
 //        list3.printLL();
 
 //      Question 4
-//        list3.printLL();
-//        list3.head = PracticeQuestions.SegregateOddEven(list3.head);
-//        list3.printLL();
+        list3.printLL();
+        list3.head = PracticeQuestions.SegregateOddEven(list3.head);
+        list3.printLL();
 //
 //      Question 5
 //        SinglyLL.Node deleteNode = list3.head.next.next.next;
@@ -495,17 +503,17 @@ public class PracticeQuestions {
 //        System.out.println(PracticeQuestions.Multiply(list3.head,list4.head));
 
 //      Question 9
-        MultilevelNode head = new MultilevelNode(1);
-        head.next = new MultilevelNode(2);
-        head.next.next = new MultilevelNode(3);
-        head.child = new MultilevelNode(4);
-        head.child.next = new MultilevelNode(5);
-        head.next.next.child = new MultilevelNode(6);
-        head.child.child = new MultilevelNode(7);
-
-        printMList(head);
-        PracticeQuestions.flattenLL(head);
-        printMList(head);
+//        MultilevelNode head = new MultilevelNode(1);
+//        head.next = new MultilevelNode(2);
+//        head.next.next = new MultilevelNode(3);
+//        head.child = new MultilevelNode(4);
+//        head.child.next = new MultilevelNode(5);
+//        head.next.next.child = new MultilevelNode(6);
+//        head.child.child = new MultilevelNode(7);
+//
+//        printMList(head);
+//        PracticeQuestions.flattenLL(head);
+//        printMList(head);
 
     }
 }
