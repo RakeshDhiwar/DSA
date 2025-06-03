@@ -390,6 +390,36 @@ public class PracticeQuestions {
         }
     }
 
+    //Given a Linked list head, rearrange it such that the converted list should be of the form a <= b >= c <= d >= e <= f
+//    Node zigZag(Node head) {
+//        // Base case - if list has 0 or 1 elemnt no zig-zag possible
+//        if(head == null || head.next == null) return head;
+//
+//        boolean flag = true;
+//        Node curr = head;
+//
+//        while(curr.next != null){
+//            if(flag){
+//                if(curr.data > curr.next.data){ // checking a < b
+//                    //swap
+//                    int temp = curr.data;
+//                    curr.data = curr.next.data;
+//                    curr.next.data = temp;
+//                }
+//            }else{
+//                if(curr.data < curr.next.data){ // checking b > c
+//                    //swap
+//                    int temp = curr.data;
+//                    curr.data = curr.next.data;
+//                    curr.next.data = temp;
+//                }
+//            }
+//            curr=curr.next; //move to next elemnt
+//            flag = !flag;   //flip flag
+//        }
+//        return head;
+//    }
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
