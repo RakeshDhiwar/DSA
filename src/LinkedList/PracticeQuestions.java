@@ -456,6 +456,61 @@ public class PracticeQuestions {
         return sorted;
     }
 
+//    Sort the biotonic doubly linked list
+public static DoublyLL.Node Sort_DoublyLL(DoublyLL.Node head) {
+    if (head == null || head.next == null) return head;
+
+    // Find the last node
+    DoublyLL.Node last = head;
+    while (last.next != null) {
+        last = last.next;
+    }
+
+    DoublyLL.Node front = head;
+    DoublyLL.Node tail = null;
+    DoublyLL.Node result = null;
+
+    // Build result from both ends
+    while (front != null && last != null && front != last && last.next != front) {
+        DoublyLL.Node newNode;
+
+        if (front.data < last.data) {
+            newNode = new DoublyLL.Node(front.data);
+            front = front.next;
+        } else {
+            newNode = new DoublyLL.Node(last.data);
+            last = last.prev;
+        }
+
+        if (result == null) {
+            result = newNode;
+            tail = result;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = tail.next;
+        }
+    }
+
+    // Handle meeting or remaining node
+    while (front != null && (last == null || front != last.next)) {
+        DoublyLL.Node newNode = new DoublyLL.Node(front.data);
+        front = front.next;
+
+        if (result == null) {
+            result = newNode;
+            tail = result;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = tail.next;
+        }
+    }
+
+    return result;
+}
+
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
@@ -544,8 +599,21 @@ public class PracticeQuestions {
 //        printMList(head);
 
 //        Question 10
-        PracticeQuestions.printarbitrarylist(list3.head);
-        PracticeQuestions.Arbitrary_pointer(list3.head);
-        PracticeQuestions.printarbitrarylist(list3.head);
+//        PracticeQuestions.printarbitrarylist(list3.head);
+//        PracticeQuestions.Arbitrary_pointer(list3.head);
+//        PracticeQuestions.printarbitrarylist(list3.head);
+
+//        Question 11
+        DoublyLL list5 = new DoublyLL();
+        list5.addLast(2);
+        list5.addLast(4);
+        list5.addLast(3);
+        list5.addLast(1);
+
+        list5.printLL();
+        list5.head = PracticeQuestions.Sort_DoublyLL(list5.head);
+        list5.printLL();
+
+
     }
 }
