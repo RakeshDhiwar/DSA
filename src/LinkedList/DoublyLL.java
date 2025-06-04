@@ -1,7 +1,7 @@
 package LinkedList;
 
 public class DoublyLL {
-    public class Node{
+    public static class Node{
         int data;
         Node next;
         Node prev;
@@ -13,10 +13,10 @@ public class DoublyLL {
         }
     }
 
-    public static Node head;
-    public static Node tail;
+    public  Node head;
+    public  Node tail;
 
-    public static int size;
+    public  int size;
 
     public void addLast(int data){
         Node newnode = new Node(data);
