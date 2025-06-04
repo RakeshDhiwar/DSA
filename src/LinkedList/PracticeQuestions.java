@@ -428,6 +428,34 @@ public class PracticeQuestions {
 //        return head;
 //    }
 
+    // Print the list with arbitrary pointers
+    public static void printarbitrarylist(SinglyLL.Node head) {
+        SinglyLL.Node current = head;
+        while (current != null) {
+            int arbVal = (current.arbitrary != null) ? current.arbitrary.data : -1;
+            System.out.println("Node: " + current.data + " -> Arbitrary: " + arbVal);
+            current = current.next;
+        }
+    }
+
+//    Point to next higher value node in a linked list with an arbitrary pointer
+    public static SinglyLL.Node Arbitrary_pointer(SinglyLL.Node head){
+        //Merge Sort
+        SinglyLL.Node sorted = SinglyLL.mergeSort(head);
+
+        //Set arbitrary value as next node
+        SinglyLL.Node curr = sorted;
+        while(curr.next!=null){
+            curr.arbitrary = curr.next;
+            curr = curr.next;
+        }
+        //for last node - In above loop it is not covered, but by-default null
+//        if (curr!=null){
+//            curr.arbitrary.data = -1;
+//        }
+        return sorted;
+    }
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
@@ -476,9 +504,9 @@ public class PracticeQuestions {
 //        list3.printLL();
 
 //      Question 4
-        list3.printLL();
-        list3.head = PracticeQuestions.SegregateOddEven(list3.head);
-        list3.printLL();
+//        list3.printLL();
+//        list3.head = PracticeQuestions.SegregateOddEven(list3.head);
+//        list3.printLL();
 //
 //      Question 5
 //        SinglyLL.Node deleteNode = list3.head.next.next.next;
@@ -515,5 +543,9 @@ public class PracticeQuestions {
 //        PracticeQuestions.flattenLL(head);
 //        printMList(head);
 
+//        Question 10
+        PracticeQuestions.printarbitrarylist(list3.head);
+        PracticeQuestions.Arbitrary_pointer(list3.head);
+        PracticeQuestions.printarbitrarylist(list3.head);
     }
 }
