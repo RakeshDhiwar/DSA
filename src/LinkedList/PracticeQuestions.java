@@ -537,6 +537,56 @@ public static DoublyLL.Node Sort_DoublyLL(DoublyLL.Node head) {
         }
         return dummy.next;
     } */
+
+
+    //Add Number Linked Lists - Given the head of two singly linked lists num1 and num2 representing two non-negative integers. The task is to return the head of the linked list representing the sum of these two numbers.
+        /*static Node addTwoLists(Node num1, Node num2) {
+            num1 = reverse(num1);
+            num2 = reverse(num2);
+
+            Node dummy = new Node(-1);
+            Node tail = dummy;
+            int carry = 0;
+
+            // Add both lists
+            while (num1 != null || num2 != null || carry != 0) {
+                int sum = carry;
+                if (num1 != null) {
+                    sum += num1.data;
+                    num1 = num1.next;
+                }
+                if (num2 != null) {
+                    sum += num2.data;
+                    num2 = num2.next;
+                }
+
+                tail.next = new Node(sum % 10);
+                tail = tail.next;
+                carry = sum / 10;
+            }
+
+            Node result = reverse(dummy.next);
+            // Remove leading zeroes
+            while (result != null && result.data == 0 && result.next != null) {
+                result = result.next;
+            }
+
+            return result;
+        }
+
+        static Node reverse(Node head) {
+            Node prev = null;
+            Node curr = head;
+            while (curr != null) {
+                Node next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+        }
+    */
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
