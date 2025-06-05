@@ -511,6 +511,32 @@ public static DoublyLL.Node Sort_DoublyLL(DoublyLL.Node head) {
 }
 
 
+//Merge K sorted Lists
+   /* public ListNode mergeKLists(ListNode[] lists) {
+        if(lists == null) return null;
+
+        //Priority queue for storing each list head;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)-> a.val - b.val);
+
+        for(ListNode node:lists){
+            if (node != null)
+                pq.offer(node);
+        }
+
+        ListNode dummy = new ListNode(-1);
+        ListNode tail = dummy;
+
+        while(!pq.isEmpty()){
+            ListNode smallest = pq.poll();
+            tail.next = smallest;
+            tail = tail.next;
+
+            if(smallest.next!=null){
+                pq.offer(smallest.next);
+            }
+        }
+        return dummy.next;
+    } */
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
