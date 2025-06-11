@@ -587,6 +587,99 @@ public static DoublyLL.Node Sort_DoublyLL(DoublyLL.Node head) {
         }
     */
 
+    //Subtract two numbers - You are given two linked lists representing two large positive numbers.
+    // The linked lists represent these two numbers, subtract the smaller number from the larger one
+    // and return the head of the linked list representing the result.
+    // Please take a look at the examples to get a better understanding of the task.
+    //The linked list does not contain leading zeros, except for the number zero itself.
+    /*static Node subLinkedList(Node head1, Node head2) {
+        int cmp = compare(head1, head2);
+        boolean isNegative = false;
+
+        if (cmp == 0) {
+            return new Node(0); // Both are equal
+        } else if (cmp < 0) {
+            // head1 < head2 → swap and mark negative
+            Node temp = head1;
+            head1 = head2;
+            head2 = temp;
+            isNegative = true;
+        }
+
+        // Remove leading 0s
+        // while (head1 != null && head1.data == 0) head1 = head1.next;
+        // while (head2 != null && head2.data == 0) head2 = head2.next;
+
+        head1 = reverse(head1);
+        head2 = reverse(head2);
+
+        Node dummy = new Node(-1);
+        Node tail = dummy;
+
+        int sum = 0;
+        int borrow = 0;
+
+        while(head1!=null || head2 != null){
+            int h1 = (head1!=null)?head1.data:0;
+            int h2 = (head2!=null)?head2.data:0;
+
+            sum = h1 - h2 - borrow;
+
+            if(sum<0){
+                sum+=10;
+                borrow=1;
+            }else{
+                borrow = 0;
+            }
+            tail.next = new Node(sum);
+            tail = tail.next;
+
+            if (head1 != null) head1 = head1.next;
+            if (head2 != null) head2 = head2.next;
+        }
+        Node result = reverse(dummy.next);
+        while(result!=null && result.data == 0 && result.next!=null){
+            result = result.next;
+        }
+        return result;
+    }
+    static int compare(Node l1, Node l2){
+        while (l1 != null && l1.data == 0) l1 = l1.next;
+        while (l2 != null && l2.data == 0) l2 = l2.next;
+
+        int len1 = 0, len2 = 0;
+        Node t1 = l1, t2 = l2;
+        while (t1 != null) { len1++; t1 = t1.next; }
+        while (t2 != null) { len2++; t2 = t2.next; }
+
+        if (len1 > len2) return 1;
+        if (len1 < len2) return -1;
+
+        while (l1 != null && l2 != null) {
+            if (l1.data > l2.data) return 1;
+            if (l1.data < l2.data) return -1;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        return 0;
+    }
+    static Node reverse(Node head){
+        Node prev = null;
+        Node curr = head;
+        Node next = null;
+
+        while(curr!=null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+     */
+
     public static void main(String[] args) {
 //        SinglyLL list1  = new SinglyLL();
 //        list1.addLast(10);
